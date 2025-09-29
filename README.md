@@ -1,11 +1,10 @@
 Online gaming site
 
-There will be a page with a list of games, with a search field by title, author, publisher and genre. It will be possible to sort the results by cheapest, most expensive, popularity and genre. Game pages with more detailed information will be implemented.
-There will be separate pages for authors, where all of their available games will be displayed. The same goes for publishers, whose pages will display all of their released games.
+I would like to have a website where visitors can browse through a catalog of games. The main page should feature a list of games, with a search option so that users can easily find titles by name, author, publisher or genre. I would also like to provide filters and sorting options, for example: cheapest games first, most expensive first, most popular, or by genre.
 
-Of course, it will be possible to register and sign in to your account. Authorised users will be provided with their own profile. In there, you can review your order history and edit your personal information. Authorised users can add items to their basket and then click ‘buy’ to place an order.
-Additionally, authorised users can add, edit, and delete their own games.
+Each game should have its own dedicated page with full details about it. There should also be a section with authors — when a visitor clicks on an author, they should see all the games created by that person. The same applies to publishers: clicking on a publisher should show all the games they have released.
 
-Finally, there will be an ‘About us’ page with contact details and information about delivery and returns.
+Visitors should be able to create an account and sign in. Once logged in, users will have their own profile page. In the profile, they should be able to update their personal details and review their purchase history. Registered users should also be able to add games to their shopping basket. When they decide to purchase, they can simply press a “Buy” button to place an order quickly (no extra steps like payment forms are required for now). Additionally, I would like registered users to be able to add their own games to the catalog, as well as edit or delete them later if needed.
+
+Finally, the website should include an “About Us” page with contact details and basic information about delivery and returns.
 ----------------------------------------------------------------------------------------------------------------------------------
-
