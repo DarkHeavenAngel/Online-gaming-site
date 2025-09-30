@@ -37,4 +37,17 @@ For Authorization and users| --- | --- | --- |--- |--- |
 /login | To login an user | POST | ``` {"email": ..., ``` <br/> ``` "password": ...} ``` | 200 OK | ``` {"token: csrf-token"} ```| 
 /userprof | To open user's profile | GET | - | 200 OK | ``` {"name": Maria, ``` <br/> ``` "email": ...} ``` | 
 /userprof | To update profile | POST | ``` {"name": Masha} ``` | 200 OK | Updated profile| 
+For shopping| --- | --- | --- |--- |--- |
+/cart | To view the cart | GET | - | 200 OK | ``` [{"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "name": Hollow Knight, ``` <br/>  ``` "quantity": 1}] ```| 
+/cart | To add a game in a cart | POST | ``` {"game-id": 2, ``` <br/> ``` "quantity": 1} ``` | 201 Created | An item have been added| 
+/cart/{item-id} | Update quantity | PUT | ``` {"quantity": 2, ``` | 200 OK | Items updated | 
+/cart/{item-id} | Delete item | DELETE | - | 204 No Content | - | 
+For orders| --- | --- | --- |--- |--- |
+/orders | To see order history | GET | - | 200 OK | ``` [{"id": 1, ``` <br/> ``` "total": 64, ``` <br/> ``` "status": delivered ```| 
+/orders/{id} | To see history of the order | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "games": [{"id":5, "title":"Left 4 Dead 2"}] } ``` <br/> ``` "quantity": 1, ``` <br/>  ``` "total": 64} ```| 
+/orders | Create new order | POST | - | 201 Created | Order created | 
+For Information about us| --- | --- | --- |--- |--- |
+/info | To see information about us | GET | - | 200 OK | ``` [{"contacts": ..., ``` <br/> ``` "delivery": ..., ``` <br/> ``` "return": ... ```| 
+
+
 
