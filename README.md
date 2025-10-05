@@ -1,0 +1,54 @@
+## Online Gaming Site
+
+I would like to have a website where visitors can browse through a catalog of games. The main page should feature a list of games, with a search option so that users can easily find titles by name, author, publisher or genre. I would also like to provide filters and sorting options, for example: cheapest games first, most expensive first, most popular, or by genre.
+
+Each game should have its own dedicated page with full details about it. There should also be a section with authors — when a visitor clicks on an author, they should see all the games created by that person. The same applies to publishers: clicking on a publisher should show all the games they have released.
+
+Visitors should be able to create an account and sign in. Once logged in, users will have their own profile page. In the profile, they should be able to update their personal details and review their purchase history. Registered users should also be able to add games to their shopping basket. When they decide to purchase, they can simply press a “Buy” button to place an order quickly (no extra steps like payment forms are required for now). Additionally, I would like registered users to be able to add their own games to the catalog, as well as edit or delete them later if needed.
+
+Finally, the website should include an “About Us” page with contact details and basic information about delivery and returns.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+## Endponts
+
+Endpoint | Usage | Request method | Request body/parameters | Response status | Response body |
+--- | --- | --- | --- |--- |--- |
+**For Games** | --- | --- | --- |--- |--- |
+/games | To get a list of games | GET | search, sort, limit, offset | 200 OK | ``` [{"id": 1, ``` <br/> ``` "title": Dying Light ``` <br/> ``` "genre": RPG, ``` <br/> ``` "price": 349}] ```| 
+/games/{id} | To get game details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "title": Dying Light ``` <br/> ``` "genre": RPG, ``` <br/> ``` "description": action game..., ``` <br/> ``` "price": 349} ```| 
+/games | To add a game | POST | ``` {"title": Hollow Knight ``` <br/> ``` "genre": Indie, ``` <br/> ``` "description": action game..., ``` <br/> ``` "price": 169 ``` <br/> ``` "author-id": 2 ``` <br/> ``` "publisher-id": 3} ``` | 201 Created | ``` {"id": 7 ``` <br/> ``` "title": Hollow Knight ``` <br/> ``` "genre": Indie, ``` <br/> ``` "description": action game..., ``` <br/> ``` "price": 169 ``` <br/> ``` "author-id": 2 ``` <br/> ``` "publisher-id": 3} ```| 
+/games/{id} | To update game details | PUT | ``` {"price: 157"} ``` | 200 OK | ``` {"id": 7 ``` <br/> ``` "title": Hollow Knight ``` <br/> ``` ... ``` <br/> ``` "price": 157 ``` <br/> ``` ... }```| 
+/games/{id} | To delete game | DELETE | - | 204 No Content | -|
+**For Authors** | --- | --- | --- |--- |--- |
+/authors | To get a list of authors | GET | search, limit, offset | 200 OK | ``` [{"id": 1, ``` <br/> ``` "name": Team Cherry}] ``` | 
+/authors/{id} | To get author's details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Team Cherry ``` <br/> ``` "games": [{"id":5, "url": "/games/5"}]} ```| 
+/authors | To add an author | POST | ``` {"name": Valve, ``` <br/> ``` "bio": information} ``` | 201 Created | ``` {"id": 2, ``` <br/> ``` "name": Valve, ``` <br/> ``` "bio": information} ```| 
+/authors/{id} | To update author's details | PUT |  ``` {"bio": updated} ``` | 200 OK | ``` {"id": 2, ``` <br/> ``` "name": Valve, ``` <br/> ``` "bio": updated} ```| 
+/authors/{id} | To delete author | DELETE | - | 204 No Content | -| 
+**For publishers** | --- | --- | --- |--- |--- |
+/publishers | To get a list of publishers | GET | search, limit, offset | 200 OK | ``` [{"id": 1, ``` <br/> ``` "name": Ubisoft}] ``` | 
+/publishers/{id} | To get publisher's details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Ubisoft ``` <br/> ``` "games": [{"id":5, "url": "/games/5"}]}  ```| 
+/publishers | To add an publishers | POST | ``` {"name": Valve, ``` <br/> ``` "country": Spain} ``` | 201 Created | ``` {"id": 2, ``` <br/> ``` "name": Valve ``` <br/> ``` "country": Spain} ```| 
+/publishers/{id} | To update publishers's details | PUT |  ``` {"country": Canada} ``` | 200 OK | ``` {"id": 2, ``` <br/> ``` "name": Valve ``` <br/> ``` "country": Canada} ```| 
+/publishers/{id} | To delete publisher | DELETE | - | 204 No Content | -| 
+**For Authorization and users** | --- | --- | --- |--- |--- |
+/regist | To register new user | POST | ``` {"name": Maria, ``` <br/> ``` "email": ..., ```  <br/> ``` "password": ...} ``` | 201 Created | ``` {"id": 1, ``` <br/> ``` "name": Maria, ``` <br/> ``` "email": ..., ```  <br/> ``` "password": ...} ```| 
+/login | To login an user | POST | ``` {"email": ..., ``` <br/> ``` "password": ...} ``` | 200 OK | ``` {"token: csrf-token"} ```| 
+/profiles | To open user's profile | GET | - | 200 OK |  ``` {"id": 1, ``` <br/> ``` "name": Maria, ``` <br/> ``` "email": ...} ``` | 
+/profiles | To update profile | POST | ``` {"name": Masha} ``` | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Masha, ``` <br/> ``` "email": ...} ```| 
+**For shopping** | --- | --- | --- |--- |--- |
+/cart | To view the cart | GET | sort | 200 OK | ``` [{"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "name": Hollow Knight, ``` <br/>  ``` "quantity": 1}] ```| 
+/cart | To add a game in a cart | POST | ``` {"game-id": 2, ``` <br/> ``` "quantity": 1} ``` | 201 Created |  ``` {"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "quantity": 1} ```| 
+/cart/{item-id} | Update quantity | PUT | ``` {"quantity": 2, ``` | 200 OK | ``` {"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "quantity": 2} ``` | 
+/cart/{item-id} | Delete item | DELETE | - | 204 No Content | - | 
+**For orders** | --- | --- | --- |--- |--- |
+/orders | To see order history | GET | - | 200 OK | ``` [{"id": 1, ``` <br/> ``` "total": 64, ``` <br/> ``` "status": delivered ```| 
+/orders/{id} | To see history of the order | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "cart-id": 2 ``` <br/> ``` "quantity": 1, ``` <br/>  ``` "total": 64} ```| 
+/orders | Create new order | POST | - | 201 Created | ``` {"id": 3, ``` <br/> ``` "cart-id": 3 ``` <br/> ``` "status": pending, ``` <br/>  ``` "total": 234} ``` | 
+**For Information about us** | --- | --- | --- |--- |--- |
+/info | To see information about us | GET | - | 200 OK | ``` [{"contacts": ..., ``` <br/> ``` "delivery": ..., ``` <br/> ``` "return": ... ```| 
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+![alt text](https://github.com/DarkHeavenAngel/Online-gaming-site/blob/Description-branch/base.png)
