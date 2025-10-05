@@ -35,10 +35,10 @@ Endpoint | Usage | Request method | Request body/parameters | Response status | 
 **For Authorization and users** | --- | --- | --- |--- |--- |
 /regist | To register new user | POST | ``` {"name": Maria, ``` <br/> ``` "email": ..., ```  <br/> ``` "password": ...} ``` | 201 Created | ``` {"id": 1, ``` <br/> ``` "name": Maria, ``` <br/> ``` "email": ..., ```  <br/> ``` "password": ...} ```| 
 /login | To login an user | POST | ``` {"email": ..., ``` <br/> ``` "password": ...} ``` | 200 OK | ``` {"token: csrf-token"} ```| 
-/userprof | To open user's profile | GET | - | 200 OK |  ``` {"id": 1, ``` <br/> ``` "name": Maria, ``` <br/> ``` "email": ...} ``` | 
-/userprof | To update profile | POST | ``` {"name": Masha} ``` | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Masha, ``` <br/> ``` "email": ...} ```| 
+/profiles | To open user's profile | GET | - | 200 OK |  ``` {"id": 1, ``` <br/> ``` "name": Maria, ``` <br/> ``` "email": ...} ``` | 
+/profiles | To update profile | POST | ``` {"name": Masha} ``` | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Masha, ``` <br/> ``` "email": ...} ```| 
 **For shopping** | --- | --- | --- |--- |--- |
-/cart | To view the cart | GET | - | 200 OK | ``` [{"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "name": Hollow Knight, ``` <br/>  ``` "quantity": 1}] ```| 
+/cart | To view the cart | GET | sort | 200 OK | ``` [{"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "name": Hollow Knight, ``` <br/>  ``` "quantity": 1}] ```| 
 /cart | To add a game in a cart | POST | ``` {"game-id": 2, ``` <br/> ``` "quantity": 1} ``` | 201 Created |  ``` {"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "quantity": 1} ```| 
 /cart/{item-id} | Update quantity | PUT | ``` {"quantity": 2, ``` | 200 OK | ``` {"item-id": 1, ``` <br/> ``` "game-id": 2, ``` <br/> ``` "quantity": 2} ``` | 
 /cart/{item-id} | Delete item | DELETE | - | 204 No Content | - | 
