@@ -22,13 +22,13 @@ Endpoint | Usage | Request method | Request body/parameters | Response status | 
 /games/{id} | To delete game | DELETE | - | 204 No Content | -|
 **For Authors** | --- | --- | --- |--- |--- |
 /authors | To get a list of authors | GET | search, limit, offset | 200 OK | ``` [{"id": 1, ``` <br/> ``` "name": Team Cherry}] ``` | 
-/authors/{id} | To get author's details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Team Cherry ``` <br/> ``` "games": [{"id":5,"title":"Left 4 Dead 2"}] } ```| 
+/authors/{id} | To get author's details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Team Cherry ``` <br/> ``` "games": [{"id":5, "url": "/games/5"}]} ```| 
 /authors | To add an author | POST | ``` {"name": Valve, ``` <br/> ``` "bio": information} ``` | 201 Created | ``` {"id": 2, ``` <br/> ``` "name": Valve, ``` <br/> ``` "bio": information} ```| 
 /authors/{id} | To update author's details | PUT |  ``` {"bio": updated} ``` | 200 OK | ``` {"id": 2, ``` <br/> ``` "name": Valve, ``` <br/> ``` "bio": updated} ```| 
 /authors/{id} | To delete author | DELETE | - | 204 No Content | -| 
 **For publishers** | --- | --- | --- |--- |--- |
 /publishers | To get a list of publishers | GET | search, limit, offset | 200 OK | ``` [{"id": 1, ``` <br/> ``` "name": Ubisoft}] ``` | 
-/publishers/{id} | To get publisher's details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Ubisoft ``` <br/> ``` "games": [...] } ```| 
+/publishers/{id} | To get publisher's details | GET | - | 200 OK | ``` {"id": 1, ``` <br/> ``` "name": Ubisoft ``` <br/> ``` "games": [{"id":5, "url": "/games/5"}]}  ```| 
 /publishers | To add an publishers | POST | ``` {"name": Valve, ``` <br/> ``` "country": Spain} ``` | 201 Created | ``` {"id": 2, ``` <br/> ``` "name": Valve ``` <br/> ``` "country": Spain} ```| 
 /publishers/{id} | To update publishers's details | PUT |  ``` {"country": Canada} ``` | 200 OK | ``` {"id": 2, ``` <br/> ``` "name": Valve ``` <br/> ``` "country": Canada} ```| 
 /publishers/{id} | To delete publisher | DELETE | - | 204 No Content | -| 
