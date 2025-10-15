@@ -1,13 +1,17 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status, permissions
+
 from django.http import Http404
-from rest_framework import status
 
 from main.models import Game, Author, Publisher
 from main.serializers import GameSerializer, AuthorSerializer, PublisherSerializer
+from main.permissions import IsOwnerOrReadOnly
 
 
 class GamesList(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
     def get(self, request):
         games = Game.objects.all()
         serializer = GameSerializer(games, many=True)
@@ -16,11 +20,13 @@ class GamesList(APIView):
     def post(self, request):
         serializer = GameSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class GameDetail(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Game.objects.get(pk=pk)
@@ -53,6 +59,8 @@ class GameDetail(APIView):
 
 
 class AuthorsList(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
     def get(self, request):
         authors = Author.objects.all()
         serializer = AuthorSerializer(authors, many=True)
@@ -61,11 +69,13 @@ class AuthorsList(APIView):
     def post(self, request):
         serializer = AuthorSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AuthorDetail(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Author.objects.get(pk=pk)
@@ -100,6 +110,8 @@ class AuthorDetail(APIView):
 
 
 class PublishersList(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
     def get(self, request):
         publisher = Publisher.objects.all()
         serializer = PublisherSerializer(publisher, many=True)
@@ -108,11 +120,13 @@ class PublishersList(APIView):
     def post(self, request):
         serializer = PublisherSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(owner=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PublisherDetail(APIView):
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+
     def get_object(self, pk):
         try:
             return Publisher.objects.get(pk=pk)
