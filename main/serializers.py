@@ -3,6 +3,8 @@ from main.models import Game, Author, Publisher
 
 
 class GameSerializer(serializers.ModelSerializer):
+    publisher = serializers.PrimaryKeyRelatedField(queryset=Publisher.objects.all())
+    owner = serializers.ReadOnlyField(source='owner.username')
     class Meta:
         model = Game
         fields = '__all__'
